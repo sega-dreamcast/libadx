@@ -3,7 +3,7 @@
  * ADX Decoder Library
  * 
  * Copyright (C) 2011-2013 Josh 'PH3NOM' Pearson
- * Copyright (C) 2024 The KOS Team and contributors
+ * Copyright (C) 2024-2025 The KOS Team and contributors
  *
  * This code was contributed to KallistiOS (KOS) by Mickaël Cardoso (SiZiOUS).
  * It was originally made by Josh Pearson (PH3NOM). Some portions of code were
@@ -61,10 +61,10 @@ static int pcm_samples, loop;
 static unsigned char adx_buf[ADX_HDR_SIZE];
 
 /* Local function definitions */
-static int  adx_parse( unsigned char *buf );
+static int adx_parse( unsigned char *buf );
 static void adx_to_pcm( short *out, unsigned char *in, PREV *prev );
-static void* adx_thread(void*);
-static void* pause_thd(void*);
+static void* adx_thread( void* __attribute__((unused)) arg );
+static void* pause_thd( void* __attribute__((unused)) arg );
 
 static int read_be16(unsigned char *buf)     /* ADX File Format is Big Endian */
 {
@@ -256,7 +256,7 @@ static void adx_to_pcm(short *out,unsigned char *in,PREV *prev)
 }
 
 /* Decode the ADX in a seperate thread */
-static void* adx_thread(void*)
+static void* adx_thread(void* __attribute__((unused)) arg)
 {
     //FILE *adx_in;
     //unsigned char buf[ADX_HDR_SIZE];
@@ -418,7 +418,7 @@ exit:
 }
 
 /* This thread will handle the 'pausing' routine */
-static void* pause_thd(void*)
+static void* pause_thd(void* __attribute__((unused)) arg)
 {
     while( snddrv.dec_status != SNDDEC_STATUS_RESUMING )
     { 
