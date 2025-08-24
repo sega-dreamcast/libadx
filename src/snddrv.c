@@ -3,7 +3,7 @@
  * Direct Access to Sound Driver
  *
  * Copyright (C) 2011-2013 Josh 'PH3NOM' Pearson
- * Copyright (C) 2024 The KOS Team and contributors
+ * Copyright (C) 2024-2025 The KOS Team and contributors
  *
  * This code was contributed to KallistiOS (KOS) by Mickaël Cardoso (SiZiOUS).
  * It was originally made by Josh Pearson (PH3NOM). Some portions of code were
@@ -125,7 +125,7 @@ static void *snddrv_callback(snd_stream_hnd_t hnd, int len, int * actual) {
 
 }
 
-static void* snddrv_thread(void*) {
+static void* snddrv_thread(void* __attribute__((unused)) arg) {
 
     printf("SNDDRV: Rate - %i, Channels - %i\n", snddrv.rate, snddrv.channels);
     
