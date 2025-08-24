@@ -97,7 +97,7 @@ int snddrv_exit() {
         printf("SNDDRV: Exited\n");   
     }
           
-    memset( snddrv.pcm_buffer, 0, 65536+16384);
+    memset( snddrv.pcm_buffer, 0, sizeof(snddrv.pcm_buffer) );
     snddrv.pcm_bytes = 0;
     snddrv.pcm_needed = 0;
     
