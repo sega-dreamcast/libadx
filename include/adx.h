@@ -40,7 +40,8 @@ extern "C" {
 
 #define ADX_CRI_SIZE 0x06
 #define ADX_PAD_SIZE 0x0e
-#define ADX_HDR_SIZE 0x2c
+#define ADX_HDR_SIZE_V3 0x2c
+#define ADX_HDR_SIZE_V4 0x38
 #define ADX_HDR_SIG  0x80
 #define ADX_EXIT_SIG 0x8001
 
