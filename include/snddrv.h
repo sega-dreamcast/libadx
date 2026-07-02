@@ -34,6 +34,8 @@
 #ifndef SNDDRV_H
 #define SNDDRV_H
 
+#include <stdalign.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -74,7 +76,7 @@ struct snddrv {
        volatile int drv_status;
        volatile int dec_status;
        volatile int buf_status;
-       unsigned int pcm_buffer[65536+16384];
+       alignas(32) unsigned int pcm_buffer[65536+16384];
        unsigned int *pcm_ptr;
 };
 extern struct snddrv snddrv;

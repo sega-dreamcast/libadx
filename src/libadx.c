@@ -42,6 +42,7 @@
 */
 
 #include <stdlib.h>
+#include <malloc.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
@@ -270,7 +271,7 @@ static void* adx_thread(void* __attribute__((unused)) arg)
     if( ADX_Info.loop && loop )             
         printf("LibADX: Loop Enabled\n");
 
-    pcm_buf = malloc(PCM_BUF_SIZE);                    /* allocate PCM buffer */
+    pcm_buf = memalign(32, PCM_BUF_SIZE);             /* allocate PCM buffer */
     if( pcm_buf == NULL )
         goto exit;
 
